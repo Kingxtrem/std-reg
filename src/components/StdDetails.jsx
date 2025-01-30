@@ -1,7 +1,7 @@
 import React, { useEffect, useState,createContext } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 const userContext=createContext()
-const Std_details = () => {
+const StdDetails = () => {
   const navigate = useNavigate()
   const { id } = useParams()
   const [std, setStd] = useState({})
@@ -35,4 +35,4 @@ const Std_details = () => {
     </userContext.Provider>
   )
 }
-export default Std_details
+export default StdDetails

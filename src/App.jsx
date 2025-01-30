@@ -4,10 +4,10 @@ import GetApi from './components/GetApi';
 import PostApi from './components/PostApi';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Std_details from './components/std_details';
+import StdDetails from './components/StdDetails';
 import Update from './components/Update';
 const App = () => {
- 
+
   return (
     <>
       <BrowserRouter>
@@ -15,8 +15,9 @@ const App = () => {
         <Routes>
           <Route path='/' element={<GetApi />} />
           <Route path='/PostApi' element={<PostApi />} />
-          <Route path='/Std_details/:id' element={<Std_details/>} />
-          <Route path='/Update/:id' element={<Update/>}/>
+          <Route path='/StdDetails/:id' element={<StdDetails />} />
+          <Route path='/Update/:id' element={<Update />} />
+          <Route path='*' element={<div>404 not found</div>} />
         </Routes>
       </BrowserRouter>
     </>
