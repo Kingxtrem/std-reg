@@ -14,6 +14,7 @@ const StdDetails = () => {
   }
   const deleteHandler = async () => {
     await fetch(stdUrl, { method: "DELETE" })
+    alert("Data Deleted Successfully")
     navigate("/")
   }
   useEffect(() => {
@@ -28,7 +29,7 @@ const StdDetails = () => {
       <h4>GUARDIAN NAME:{std?.guardianName}</h4>
       <h4>DEPARTMENT NAME:{std?.departmentName}</h4>
       <div className='container4'>
-        <Link to={`/Update/${id}`}><button>Update</button></Link>
+        <Link to={`/PostApi/${id}`}><button>Update</button></Link>
         <button onClick={deleteHandler}>Delete</button></div>
     </div>
    

@@ -5,7 +5,7 @@ import PostApi from './components/PostApi';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import StdDetails from './components/StdDetails';
-import Update from './components/Update';
+// import Update from './components/Update';
 const App = () => {
 
   return (
@@ -16,7 +16,7 @@ const App = () => {
           <Route path='/' element={<GetApi />} />
           <Route path='/PostApi' element={<PostApi />} />
           <Route path='/StdDetails/:id' element={<StdDetails />} />
-          <Route path='/Update/:id' element={<Update />} />
+          <Route path='/PostApi/:id' element={<PostApi />} />
           <Route path='*' element={<div>404 not found</div>} />
         </Routes>
       </BrowserRouter>
