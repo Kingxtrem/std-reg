@@ -4,13 +4,13 @@ import Card from './Card'
 
 const GetApi = () => {
   const [getdata, setGetdata] = useState([])
-  const geturl = "http://192.168.0.106:8080/api/Student/allStudents?limit=100&page=1"
-  // const geturl = "https://jsonplaceholder.typicode.com/users"
+  // const geturl = "http://192.168.0.106:8080/api/Student/allStudents?limit=100&page=1"
+  const geturl = "https://jsonplaceholder.typicode.com/users"
   const gethandler = async (url) => {
     let response = await fetch(url)
     let resolve = await response.json()
-    setGetdata(resolve.Data)
-    
+    // setGetdata(resolve.Data)
+    setGetdata(resolve) //for jsonplaceholder
   }
   useEffect(() => {
     gethandler(geturl)

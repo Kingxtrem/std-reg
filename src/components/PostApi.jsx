@@ -17,11 +17,14 @@ const PostApi = () => {
 
   const navigate = useNavigate()
 
-  const stdUrl = `http://192.168.0.106:8080/api/Student/${id}`
+  // const stdUrl = `http://192.168.0.106:8080/api/Student/${id}`
+  const stdUrl = `https://jsonplaceholder.typicode.com/users/${id}`
 
-  const updateUrl = "http://192.168.0.106:8080/api/Student/update"
+  // const updateUrl = "http://192.168.0.106:8080/api/Student/update"
+  const updateUrl = `https://jsonplaceholder.typicode.com/users/${id}`
 
-  const posturl = "http://192.168.0.106:8080/api/Student/register"
+  // const posturl = "http://192.168.0.106:8080/api/Student/register"
+  const posturl = "https://jsonplaceholder.typicode.com/users"
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -30,27 +33,30 @@ const PostApi = () => {
   const stdhandler = async (url) => {
     let response = await fetch(url)
     let resolve = await response.json()
-    setForm(resolve.Data)
+    // setForm(resolve.Data)
+    setForm(resolve) //for jsonplaceholder
   }
 
   const updateData = async () => {
-    setForm({ ...form, id: id })
-    let result = await fetch(updateUrl, {
-      method: "PUT",
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(form)
-    })
-    let resolve = await result.json()
-    console.log(resolve)
-
-    if (resolve.StatusCode === 200) {
-      alert("Data Updated Successfully")
-    }
-    else {
-      alert("Data Not Updated")
-    }
+    let conf = confirm("Are you sure you want to update this data?")
+    if (conf) {
+      setForm({ ...form, id: id })
+      let result = await fetch(updateUrl, {
+        method: "PUT",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form)
+      })
+      let resolve = await result.json()
+      if (resolve.StatusCode === 200) {
+        alert("Data Updated Successfully")
+      } else {
+        alert("Data Not Updated")
+      }}
+      else {
+        alert("Data Not Updated")
+      }
   }
 
   const postdata = async () => {
@@ -62,12 +68,11 @@ const PostApi = () => {
       body: JSON.stringify(form)
     })
     let resolve = await result.json()
-    console.log(resolve)
-    if (resolve.StatusCode === 200) {
-      alert("Data Posted Successfully")
-    } else {
-      alert("Data Not Posted")
-    }
+    // if (resolve.StatusCode === 200) {
+    //   alert("Data Posted Successfully")
+    // } else {
+    //   alert("Data Not Posted")
+    // }
 
   }
   const handleSubmit = async (e) => {
@@ -101,7 +106,6 @@ const PostApi = () => {
     if (id) {
       stdhandler(stdUrl)
     } else {
-      console.log(id)
       setForm({
         name: "",
         email: "",
@@ -110,8 +114,8 @@ const PostApi = () => {
         departmentName: ""
       })
     }
-  }, [id == undefined])
-  // }
+  }, [])
+
   return (
     <>
       <div className="container">
